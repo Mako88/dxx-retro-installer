@@ -35,7 +35,7 @@ AllowRootDirectory=yes
 UsePreviousSetupType=no
 DisableWelcomePage=no
 AllowNoIcons=yes
-
+DisableDirPage=no
 
 
 [Languages]
@@ -759,7 +759,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.1'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.2'; //Add the installer revision to the version
 
         if idpDownloadFile('https://www.dropbox.com/s/yf4qsblsw7dwu7q/version.txt?dl=1',expandconstant('{tmp}\version.txt'))then
           begin
