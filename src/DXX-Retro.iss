@@ -257,7 +257,7 @@ Source: "{code:Vertigo}\Vertigo\Missions\panic.mn2"; DestDir: "{app}\DXX-Retro\D
 Source: "{code:Vertigo}\Vertigo\Missions\d2x.hog"; DestDir: "{app}\DXX-Retro\D2X-Retro\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 Source: "{code:Vertigo}\Vertigo\Missions\d2x.mn2"; DestDir: "{app}\DXX-Retro\D2X-Retro\Missions"; Components: "d2x\vertigo"; Check: VertigoFiles; Flags: external skipifsourcedoesntexist uninsneveruninstall
 ;D2 Addons
-Source: "C:\DXX-Retro\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Retro\D2X-Retro"; Components: d2x; Flags: ignoreversion;
+Source: "C:\DXX-Retro\include\Addons\UUD2SP.DXA"; DestDir: "{app}\DXX-Retro\D2X-Retro"; Components: d2x and not d2x\demo; Flags: ignoreversion;
 ;D2 Retro Downloaded
 Source: "{tmp}\d2x-retro.exe"; DestDir: "{app}\DXX-Retro\D2X-Retro"; Components: d2x; Flags: ignoreversion skipifsourcedoesntexist
 
@@ -759,7 +759,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.3'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.4'; //Add the installer revision to the version
 
         if idpDownloadFile('https://www.dropbox.com/s/yf4qsblsw7dwu7q/version.txt?dl=1',expandconstant('{tmp}\version.txt'))then
           begin
@@ -1021,13 +1021,13 @@ end;
 // IF we haven't run the installer and we're not installing demos, then we're using the GOG installer.
 function GogInstaller1(): Boolean;
 begin
-  if(not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[0] and not IsComponentSelected('d1x\demo')) then
     result := true;
 end;
 
 function GogInstaller2(): Boolean;
 begin
-  if(not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[1] and not IsComponentSelected('d2x\demo')) then
     result := true;
 end;
 
