@@ -759,7 +759,7 @@ begin
         checkedSuccessfully:=false;
         GetVersionNumbersString(expandconstant('{srcexe}'), ourVersion);
         ourVersion := ChangeFileExt(ourVersion, ''); //Remove the trailing zero
-        ourVersion := ourVersion + '.2'; //Add the installer revision to the version
+        ourVersion := ourVersion + '.3'; //Add the installer revision to the version
 
         if idpDownloadFile('https://www.dropbox.com/s/yf4qsblsw7dwu7q/version.txt?dl=1',expandconstant('{tmp}\version.txt'))then
           begin
@@ -1599,12 +1599,12 @@ begin
     exit;
   end;
   // If the user hasn't run the GOG installers, don't ask for the installation directories.
-  if (not GogInstalledPage.Values[0] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID))) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[0] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage1.ID))) then
   begin
     result := true;
     exit;
   end;
-  if (not GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID))) then
+  if WhichInstallPage.Values[0] and (not GogInstalledPage.Values[1] and ((PageID = DataDirPage.ID) or (PageID = DataDirPage2.ID))) then
   begin
     result := true;
     exit;
