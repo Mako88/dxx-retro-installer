@@ -5,3 +5,7 @@ This is the Windows Installer for the Retro mod of the Descent source port DXX-R
 
 
 The only different step to compiling this is copying over the .ico files from the include directory.
+
+Download Retro from www.descentchampions.org/retromod/ and remove the rebirth exe files.
+
+Upload the installer to Dropbox
